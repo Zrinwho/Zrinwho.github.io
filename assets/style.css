@@ -67,7 +67,7 @@ html[lang="zh-CN"] body { line-height: 1.7; }
 .stats { border-top: 1px solid var(--ink); }
 .stats .grid { padding-top: 24px; padding-bottom: 40px; row-gap: 32px; }
 .stat { grid-column: span 3; }
-.stat b { display: block; font-size: clamp(40px, 5vw, 72px); font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--accent); }
+.stat b { display: block; font-size: clamp(36px, 4vw, 60px); font-weight: 700; letter-spacing: -.04em; line-height: 1; color: var(--accent); }
 .stat span { display: block; margin-top: 10px; font-size: 14px; color: var(--muted); max-width: 22ch; }
 
 /* ---------- Sections ---------- */
@@ -231,9 +231,15 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; padding
   .meta div.m { grid-column: span 6; }
 }
 @media (max-width: 640px) {
-  .bar nav { display: none; }
+  /* Phone: name + language on row 1, nav links on a scrollable row 2 */
+  html { scroll-padding-top: 104px; }
+  .bar .wrap { flex-wrap: wrap; height: auto; row-gap: 0; padding-top: 12px; }
+  .bar .mark { order: 1; }
+  .bar .lang { order: 2; }
+  .bar nav { order: 3; width: 100%; gap: 18px; padding: 10px 0 12px; font-size: 13px; overflow-x: auto; white-space: nowrap; scrollbar-width: none; }
+  .bar nav::-webkit-scrollbar { display: none; }
   .hero .intro, .hero .portrait { grid-column: 1 / -1; }
-  .hero .portrait { margin-top: 32px; max-width: 320px; }
+  .hero .portrait { margin-top: 32px; width: 100%; max-width: 320px; justify-self: center; }
   .row .when, .row .what { grid-column: 1 / -1; }
   .row .when { margin-bottom: 4px; }
   .proj .no { grid-column: 1 / 2; }
