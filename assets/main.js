@@ -39,9 +39,11 @@
       img.addEventListener('error', miss);
     });
     document.querySelectorAll('.ph video').forEach(function (v) {
+      // Hide only on a real load error; networkState briefly reads NO_SOURCE while loading starts
       var miss = function () { v.parentNode.classList.add('missing'); };
-      if (v.networkState === 3 || v.error) miss();
+      if (v.error) miss();
       v.addEventListener('error', miss);
+      v.addEventListener('loadedmetadata', function () { v.parentNode.classList.remove('missing'); });
       // Optional in/out points: play only data-start..data-end, looping inside that window
       var s = parseFloat(v.getAttribute('data-start')), e = parseFloat(v.getAttribute('data-end'));
       if (!isNaN(s)) {
