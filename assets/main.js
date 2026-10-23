@@ -74,4 +74,17 @@
     }
   };
   window.sitePlaceholders();
+
+  // Photo slideshows: cross-fade every 4.5 s (still image if the visitor prefers reduced motion)
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.slides').forEach(function (box) {
+    var imgs = box.querySelectorAll('img'), i = 0;
+    if (imgs.length < 2 || still) return;
+    setInterval(function () {
+      if (document.hidden) return;
+      imgs[i].classList.remove('on');
+      i = (i + 1) % imgs.length;
+      imgs[i].classList.add('on');
+    }, 4500);
+  });
 })();
