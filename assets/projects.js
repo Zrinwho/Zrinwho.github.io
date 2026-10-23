@@ -393,6 +393,11 @@
     var i = 0;
     P.forEach(function (p, k) { if (p.id === id) i = k; });
     var p = P[i], prev = P[(i + P.length - 1) % P.length], next = P[(i + 1) % P.length];
+    // main.js picks the title for the current language from these attributes
+    var html = document.documentElement;
+    html.setAttribute('data-title-en', p.title.en + ' — Cheng Luoluo (Zrin)');
+    html.setAttribute('data-title-de', p.title.de + ' — Cheng Luoluo (Zrin)');
+    html.setAttribute('data-title-zh', p.title.zh + ' — 程络络 (Zrin)');
     document.title = p.title.en + ' — Cheng Luoluo (Zrin)';
 
     var h = '<div class="wrap crumb"><a href="index.html#projects">' + t(LBL.back) + '</a></div>';

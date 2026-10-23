@@ -17,6 +17,8 @@
     var h = document.documentElement;
     h.setAttribute('data-lang', l);
     h.lang = l === 'zh' ? 'zh-CN' : l;
+    var title = h.getAttribute('data-title-' + l);
+    if (title) document.title = title;
     try { localStorage.setItem('lang', l); } catch (e) {}
     document.querySelectorAll('[data-set]').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-set') === l));
